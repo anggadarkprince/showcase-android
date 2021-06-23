@@ -35,6 +35,8 @@
         android:paddingVertical="10dp"
         app:elevation="2dp"
         app:itemIconSize="30dp"
+        app:itemIconTint="@drawable/bottom_nav_selector"
+        app:itemTextColor="@drawable/bottom_nav_selector"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

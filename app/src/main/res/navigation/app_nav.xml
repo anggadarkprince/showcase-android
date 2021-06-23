@@ -8,26 +8,26 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.anggaari.showcase.ProfileFragment"
-        android:label="fragment_profile"
+        android:label="Profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/skillFragment"
         android:name="com.anggaari.showcase.SkillFragment"
-        android:label="fragment_skill"
+        android:label="Skills"
         tools:layout="@layout/fragment_skill" />
     <fragment
         android:id="@+id/portfolioFragment"
         android:name="com.anggaari.showcase.PortfolioFragment"
-        android:label="fragment_portfolio"
+        android:label="Portfolios"
         tools:layout="@layout/fragment_portfolio" />
     <fragment
         android:id="@+id/awardFragment"
         android:name="com.anggaari.showcase.AwardFragment"
-        android:label="fragment_award"
+        android:label="Awards"
         tools:layout="@layout/fragment_award" />
     <fragment
         android:id="@+id/educationFragment"
         android:name="com.anggaari.showcase.EducationFragment"
-        android:label="fragment_education"
+        android:label="Educations"
         tools:layout="@layout/fragment_education" />
 </navigation>

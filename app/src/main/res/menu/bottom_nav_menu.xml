@@ -2,21 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/profileFragment"
         android:title="@string/profile"
-        android:icon="@drawable/ic_user_circle"/>
+        android:icon="@drawable/ic_menu_profile"/>
 
     <item android:id="@+id/skillFragment"
         android:title="@string/skill"
-        android:icon="@drawable/ic_pen_nib"/>
+        android:icon="@drawable/ic_menu_skill"/>
 
     <item android:id="@+id/portfolioFragment"
         android:title="@string/portfolio"
-        android:icon="@drawable/ic_suitcase"/>
+        android:icon="@drawable/ic_menu_portfolio"/>
 
     <item android:id="@+id/awardFragment"
         android:title="@string/award"
-        android:icon="@drawable/ic_trophy"/>
+        android:icon="@drawable/ic_menu_award"/>
 
     <item android:id="@+id/educationFragment"
         android:title="@string/education"
-        android:icon="@drawable/ic_notebook"/>
+        android:icon="@drawable/ic_menu_education"/>
 </menu>
