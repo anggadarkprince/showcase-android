@@ -1,10 +1,12 @@
 package com.anggaari.showcase
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.res.ColorStateList
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.anggaari.showcase.databinding.ActivityMainBinding
@@ -21,7 +23,8 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(view)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         navController = navHostFragment.navController
 
         val appBarConfiguration = AppBarConfiguration(
@@ -36,6 +39,23 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottomNavigationView.setupWithNavController(navController)
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+        binding.fab.setOnClickListener {
+            binding.fab.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.purple_500, null))
+            binding.fab.foregroundTintList = ColorStateList.valueOf(resources.getColor(R.color.white, null))
+
+            binding.bottomNavigationView.selectedItemId = R.id.profileFragment
+            val profileMenu = binding.bottomNavigationView.menu.findItem(R.id.profileFragment)
+            NavigationUI.onNavDestinationSelected(profileMenu, navController)
+        }
+
+        binding.bottomNavigationView.setOnItemSelectedListener { item ->
+            binding.fab.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.purple_100, null))
+            binding.fab.foregroundTintList = ColorStateList.valueOf(resources.getColor(R.color.purple_500, null))
+
+            NavigationUI.onNavDestinationSelected(item, navController)
+        }
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
