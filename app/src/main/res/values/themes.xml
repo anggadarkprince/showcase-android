@@ -10,7 +10,21 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <!-- Action bar bar color. -->
+        <item name="actionBarStyle">@style/Theme.Showcase.ActionBar</item>
+        <item name="toolbarStyle">@style/Theme.Showcase.ActionBar</item>
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Theme.Showcase.ActionBar" parent="Widget.MaterialComponents.ActionBar.Primary">
+        <item name="background">@color/white</item>
+        <item name="titleTextColor">@color/purple_500</item>
+        <item name="titleTextStyle">@style/Theme.Showcase.ActionBar.TitleTextStyle</item>
+        <item name="elevation">1dp</item>
+    </style>
+    <style name="Theme.Showcase.ActionBar.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">24sp</item>
     </style>
 </resources>
