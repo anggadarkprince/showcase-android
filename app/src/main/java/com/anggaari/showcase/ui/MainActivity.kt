@@ -1,4 +1,4 @@
-package com.anggaari.showcase
+package com.anggaari.showcase.ui
 
 import android.content.res.ColorStateList
 import android.os.Bundle
@@ -8,7 +8,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import com.anggaari.showcase.R
 import com.anggaari.showcase.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

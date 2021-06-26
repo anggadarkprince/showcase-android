@@ -7,27 +7,27 @@
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.anggaari.showcase.ProfileFragment"
+        android:name="com.anggaari.showcase.ui.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/skillFragment"
-        android:name="com.anggaari.showcase.SkillFragment"
+        android:name="com.anggaari.showcase.ui.SkillFragment"
         android:label="Skills"
         tools:layout="@layout/fragment_skill" />
     <fragment
         android:id="@+id/portfolioFragment"
-        android:name="com.anggaari.showcase.PortfolioFragment"
+        android:name="com.anggaari.showcase.ui.PortfolioFragment"
         android:label="Portfolios"
         tools:layout="@layout/fragment_portfolio" />
     <fragment
         android:id="@+id/awardFragment"
-        android:name="com.anggaari.showcase.AwardFragment"
+        android:name="com.anggaari.showcase.ui.AwardFragment"
         android:label="Awards"
         tools:layout="@layout/fragment_award" />
     <fragment
         android:id="@+id/educationFragment"
-        android:name="com.anggaari.showcase.EducationFragment"
+        android:name="com.anggaari.showcase.ui.EducationFragment"
         android:label="Educations"
         tools:layout="@layout/fragment_education" />
 </navigation>
