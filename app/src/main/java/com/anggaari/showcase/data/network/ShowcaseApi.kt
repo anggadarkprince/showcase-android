@@ -7,7 +7,7 @@ import retrofit2.http.QueryMap
 
 interface ShowcaseApi {
 
-    @GET("/showcase/awards")
-    suspend fun getRecipes(@QueryMap queries: Map<String, String>): Response<Result>
+    @GET("showcase/awards")
+    suspend fun getAwards(@QueryMap queries: Map<String, String>): Response<Result>
 
 }

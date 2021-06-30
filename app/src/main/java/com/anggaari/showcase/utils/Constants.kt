@@ -4,11 +4,11 @@ class Constants {
 
     companion object {
         // API Urls
-        const val BASE_URL = "http://angga-ari.local/api/showcase"
-        const val API_PORTFOLIO_URL = "${BASE_URL}/portfolios"
-        const val API_SKILL_URL = "${BASE_URL}/skills"
-        const val API_AWARD_URL = "${BASE_URL}/awards"
-        const val API_EDUCATION_URL = "${BASE_URL}/educations"
+        const val BASE_URL = "http://192.168.1.126:8000/api/"
+        const val API_PORTFOLIO_URL = "${BASE_URL}showcase/portfolios"
+        const val API_SKILL_URL = "${BASE_URL}showcase/skills"
+        const val API_AWARD_URL = "${BASE_URL}showcase/awards"
+        const val API_EDUCATION_URL = "${BASE_URL}showcase/educations"
 
         // ROOM Database
         const val DATABASE_NAME = "showcase_database"

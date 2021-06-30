@@ -1,8 +1,11 @@
 package com.anggaari.showcase.models.award
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Data(
     @SerializedName("awarded_in")
     val awardedIn: Int,
@@ -22,4 +25,4 @@ data class Data(
     val updatedAt: String,
     @SerializedName("user_id")
     val userId: Int
-)
+): Parcelable
