@@ -42,8 +42,8 @@ class AwardAdapter : RecyclerView.Adapter<AwardAdapter.MyViewHolder>() {
     }
 
     fun setData(newData: Result) {
-        val recipesDiffUtil = DataDiffUtil(awards, newData.data)
-        val diffUtilResult = DiffUtil.calculateDiff(recipesDiffUtil)
+        val dataDiffUtil = DataDiffUtil(awards, newData.data)
+        val diffUtilResult = DiffUtil.calculateDiff(dataDiffUtil)
         awards = newData.data
         diffUtilResult.dispatchUpdatesTo(this)
     }
