@@ -5,18 +5,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.anggaari.showcase.databinding.AwardRowLayoutBinding
-import com.anggaari.showcase.models.award.Data
-import com.anggaari.showcase.models.award.Result
+import com.anggaari.showcase.models.award.Award
+import com.anggaari.showcase.models.award.AwardResult
 import com.anggaari.showcase.utils.DataDiffUtil
 
 class AwardAdapter : RecyclerView.Adapter<AwardAdapter.MyViewHolder>() {
 
-    private var awards = emptyList<Data>()
+    private var awards = emptyList<Award>()
 
     class MyViewHolder(private val binding: AwardRowLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: Data) {
-            binding.titleTextView.text = data.title
-            binding.descriptionTextView.text = data.description
+        fun bind(award: Award) {
+            binding.titleTextView.text = award.title
+            binding.descriptionTextView.text = award.description
         }
 
         companion object {
@@ -41,7 +41,7 @@ class AwardAdapter : RecyclerView.Adapter<AwardAdapter.MyViewHolder>() {
         return awards.size
     }
 
-    fun setData(newData: Result) {
+    fun setData(newData: AwardResult) {
         val dataDiffUtil = DataDiffUtil(awards, newData.data)
         val diffUtilResult = DiffUtil.calculateDiff(dataDiffUtil)
         awards = newData.data

@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Result(
+data class AwardResult(
     @SerializedName("code")
     val code: Int,
     @SerializedName("data")
-    val `data`: List<Data>,
+    val `data`: List<Award>,
     @SerializedName("status")
     val status: String
 ): Parcelable

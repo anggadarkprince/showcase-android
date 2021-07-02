@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Data(
+data class Award(
     @SerializedName("awarded_in")
     val awardedIn: Int,
     @SerializedName("category")

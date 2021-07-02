@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.anggaari.showcase.data.Repository
-import com.anggaari.showcase.models.award.Result
+import com.anggaari.showcase.models.award.AwardResult
 import com.anggaari.showcase.utils.ConnectionUtil
 import com.anggaari.showcase.utils.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,7 +20,7 @@ class AwardViewModel @Inject constructor(
     application: Application
 ) : AndroidViewModel(application) {
 
-    var awardsResponse: MutableLiveData<NetworkResult<Result>> = MutableLiveData()
+    var awardsResponse: MutableLiveData<NetworkResult<AwardResult>> = MutableLiveData()
 
     fun getAwards(queries: Map<String, String>) = viewModelScope.launch {
         getAwardsSafeCall(queries)
@@ -32,7 +32,7 @@ class AwardViewModel @Inject constructor(
         if (ConnectionUtil.hasInternetConnection(getApplication<Application>())) {
             try {
                 val response = repository.remote.getAwards(queries)
-                awardsResponse.value = handleFoodRecipesResponse(response)
+                awardsResponse.value = handleDataResponse(response)
             } catch (e: Exception) {
                 awardsResponse.value = NetworkResult.Error(e.message)
             }
@@ -41,7 +41,7 @@ class AwardViewModel @Inject constructor(
         }
     }
 
-    private fun handleFoodRecipesResponse(response: Response<Result>): NetworkResult<Result> {
+    private fun handleDataResponse(response: Response<AwardResult>): NetworkResult<AwardResult> {
         when {
             response.message().toString().contains("timeout") -> {
                 return NetworkResult.Error("Timeout")

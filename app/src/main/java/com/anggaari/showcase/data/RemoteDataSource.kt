@@ -1,7 +1,7 @@
 package com.anggaari.showcase.data
 
 import com.anggaari.showcase.data.network.ShowcaseApi
-import com.anggaari.showcase.models.award.Result
+import com.anggaari.showcase.models.award.AwardResult
 import com.anggaari.showcase.models.education.EducationResult
 import com.anggaari.showcase.models.portfolio.PortfolioResult
 import com.anggaari.showcase.models.skill.SkillResult
@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor(private val showcaseApi: ShowcaseApi) {
 
-    suspend fun getAwards(queries: Map<String, String>): Response<Result> {
+    suspend fun getAwards(queries: Map<String, String>): Response<AwardResult> {
         return showcaseApi.getAwards(queries)
     }
 
