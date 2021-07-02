@@ -1,6 +1,7 @@
 package com.anggaari.showcase.data.network
 
 import com.anggaari.showcase.models.award.Result
+import com.anggaari.showcase.models.education.EducationResult
 import com.anggaari.showcase.models.skill.SkillResult
 import retrofit2.Response
 import retrofit2.http.GET
@@ -13,5 +14,8 @@ interface ShowcaseApi {
 
     @GET("showcase/skills")
     suspend fun getSkills(@QueryMap queries: Map<String, String>): Response<SkillResult>
+
+    @GET("showcase/educations")
+    suspend fun getEducations(@QueryMap queries: Map<String, String>): Response<EducationResult>
 
 }
