@@ -42,7 +42,7 @@ class SkillFragment : Fragment() {
             requestApiData()
         }
 
-        return binding.root;
+        return binding.root
     }
 
     private fun setupRecyclerView() {

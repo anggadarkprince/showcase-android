@@ -16,7 +16,6 @@ import com.anggaari.showcase.databinding.FragmentEducationBinding
 import com.anggaari.showcase.utils.MarginItemDecoration
 import com.anggaari.showcase.utils.NetworkResult
 import com.anggaari.showcase.viewmodels.EducationViewModel
-import com.anggaari.showcase.viewmodels.SkillViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
