@@ -18,6 +18,11 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="Theme.Showcase.Fullscreen" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+    </style>
+
     <style name="Theme.Showcase.ActionBar" parent="Widget.MaterialComponents.ActionBar.Primary">
         <item name="background">@color/white</item>
         <item name="titleTextColor">@color/purple_500</item>
