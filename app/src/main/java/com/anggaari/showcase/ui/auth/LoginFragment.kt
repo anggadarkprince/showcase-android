@@ -20,8 +20,11 @@ class LoginFragment : Fragment() {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
 
         binding.textViewRegister.setOnClickListener {
-            Navigation.findNavController(findViewById(R.id.authHostFragment))
-                .navigate(R.id.action_loginFragment_to_registerFragment, null, navOptions)
+            Navigation.findNavController(it).navigate(R.id.action_loginFragment_to_registerFragment)
+        }
+
+        binding.textViewForgotPassword.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
         }
         return binding.root
     }
