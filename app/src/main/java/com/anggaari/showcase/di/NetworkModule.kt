@@ -1,12 +1,21 @@
 package com.anggaari.showcase.di
 
+import android.content.Context
+import android.util.Log
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asLiveData
+import com.anggaari.showcase.MyApplication
+import com.anggaari.showcase.data.DataStoreRepository
 import com.anggaari.showcase.data.network.ShowcaseApi
+import com.anggaari.showcase.utils.Constants
 import com.anggaari.showcase.utils.Constants.Companion.BASE_URL
+import com.anggaari.showcase.utils.MyServiceInterceptor
+import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -19,14 +28,22 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideHttpClient(): OkHttpClient {
+    fun provideContext(): Context {
+        return MyApplication.getApp()
+    }
+
+    @Singleton
+    @Provides
+    fun provideHttpClient(context: Context, serviceInterceptor: MyServiceInterceptor, dataStoreRepository: DataStoreRepository): OkHttpClient {
+        //val accessToken = dataStoreRepository.accessToken.asLiveData()
+        //viewModelScope.launch {
+        //    val token = accessToken.value
+        //}
+        val accessToken = Constants.ACCESS_TOKEN
+        Log.d("Login2", accessToken)
         return OkHttpClient.Builder()
-            .addInterceptor { chain ->
-                val newRequest = chain.request().newBuilder()
-                    .addHeader("Authorization", "Bearer 2|kWScHr91zUWsooLGt2x0lSHghgm3A0xBmGGjAN6l")
-                    .build();
-                chain.proceed(newRequest)
-            }
+            .addInterceptor(serviceInterceptor)
+            .addInterceptor(ChuckInterceptor(context))
             .readTimeout(15, TimeUnit.SECONDS)
             .connectTimeout(15, TimeUnit.SECONDS)
             .build()
