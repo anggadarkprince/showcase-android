@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.navArgs
 import com.anggaari.showcase.R
 import com.anggaari.showcase.databinding.FragmentLoginBinding
 import com.anggaari.showcase.models.auth.login.LoginData
@@ -21,6 +22,7 @@ import com.anggaari.showcase.utils.Constants
 import com.anggaari.showcase.utils.NetworkResult
 import com.anggaari.showcase.viewmodels.AppViewModel
 import com.anggaari.showcase.viewmodels.AuthViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,6 +32,8 @@ class LoginFragment : Fragment() {
 
     private lateinit var authViewModel: AuthViewModel
     private lateinit var appViewModel: AppViewModel
+
+    private val args: LoginFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +78,14 @@ class LoginFragment : Fragment() {
                 }
             }
         }
+
+        val status = args.status
+        val message = args.message
+
+        if (status == "OK" && !message.isNullOrEmpty()) {
+            Snackbar.make(binding.root, message.toString(), Snackbar.LENGTH_LONG).show()
+        }
+
         return binding.root
     }
 

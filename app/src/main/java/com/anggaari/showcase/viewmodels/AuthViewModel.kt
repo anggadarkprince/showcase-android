@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.anggaari.showcase.data.Repository
 import com.anggaari.showcase.models.auth.login.LoginResult
 import com.anggaari.showcase.models.award.AwardResult
+import com.anggaari.showcase.models.commons.StandardResponse
 import com.anggaari.showcase.utils.ConnectionUtil
 import com.anggaari.showcase.utils.MyServiceInterceptor
 import com.anggaari.showcase.utils.NetworkResult
@@ -25,9 +26,14 @@ class AuthViewModel @Inject constructor(
 ) : AndroidViewModel(application) {
 
     var loginResponse: MutableLiveData<NetworkResult<LoginResult>> = MutableLiveData()
+    var forgotPasswordResponse: MutableLiveData<NetworkResult<StandardResponse>> = MutableLiveData()
 
     fun login(email: String, password: String) = viewModelScope.launch {
         getLoginSafeCall(email, password)
+    }
+
+    fun forgotPassword(email: String) = viewModelScope.launch {
+        getForgotPasswordSafeCall(email)
     }
 
     private suspend fun getLoginSafeCall(email: String, password: String) {
@@ -66,4 +72,32 @@ class AuthViewModel @Inject constructor(
         }
     }
 
+    private suspend fun getForgotPasswordSafeCall(email: String) {
+        forgotPasswordResponse.value = NetworkResult.Loading()
+
+        if (ConnectionUtil.hasInternetConnection(getApplication<Application>())) {
+            try {
+                val response = repository.remote.forgotPassword(email)
+                forgotPasswordResponse.value = handleForgotPasswordResponse(response)
+            } catch (e: Exception) {
+                forgotPasswordResponse.value = NetworkResult.Error(e.message)
+            }
+        } else {
+            forgotPasswordResponse.value = NetworkResult.Error("No internet connection")
+        }
+    }
+
+    private fun handleForgotPasswordResponse(response: Response<StandardResponse>): NetworkResult<StandardResponse> {
+        return when {
+            response.message().toString().contains("timeout") -> {
+                NetworkResult.Error("Timeout")
+            }
+            response.isSuccessful -> {
+                NetworkResult.Success(response.body()!!)
+            }
+            else -> {
+                NetworkResult.Error(response.message(), response.code())
+            }
+        }
+    }
 }

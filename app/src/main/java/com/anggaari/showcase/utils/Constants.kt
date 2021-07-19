@@ -6,7 +6,7 @@ class Constants {
 
     companion object {
         // API Urls
-        const val BASE_URL = "http://192.168.43.141:8000/api/"
+        const val BASE_URL = BuildConfig.BASE_URL
         const val API_PORTFOLIO_URL = "${BASE_URL}showcase/portfolios"
         const val API_SKILL_URL = "${BASE_URL}showcase/skills"
         const val API_AWARD_URL = "${BASE_URL}showcase/awards"

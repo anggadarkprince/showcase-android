@@ -2,6 +2,7 @@ package com.anggaari.showcase.data.network
 
 import com.anggaari.showcase.models.auth.login.LoginResult
 import com.anggaari.showcase.models.award.AwardResult
+import com.anggaari.showcase.models.commons.StandardResponse
 import com.anggaari.showcase.models.education.EducationResult
 import com.anggaari.showcase.models.portfolio.PortfolioResult
 import com.anggaari.showcase.models.skill.SkillResult
@@ -17,6 +18,11 @@ interface ShowcaseApi {
         @Field("email") email:String,
         @Field("password") password:String
     ): Response<LoginResult>
+
+    @FormUrlEncoded
+    @POST("forgot-password")
+    @Headers(Constants.NO_AUTH_HEADER_KEY + ": true")
+    suspend fun forgotPassword(@Field("email") email:String): Response<StandardResponse>
 
     @GET("showcase/awards")
     suspend fun getAwards(@QueryMap queries: Map<String, String>): Response<AwardResult>

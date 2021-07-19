@@ -2,9 +2,6 @@ package com.anggaari.showcase.di
 
 import android.content.Context
 import android.util.Log
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.asLiveData
 import com.anggaari.showcase.MyApplication
 import com.anggaari.showcase.data.DataStoreRepository
 import com.anggaari.showcase.data.network.ShowcaseApi
