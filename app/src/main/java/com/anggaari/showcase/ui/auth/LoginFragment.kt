@@ -83,7 +83,7 @@ class LoginFragment : Fragment() {
         val message = args.message
 
         if (status == "OK" && !message.isNullOrEmpty()) {
-            Snackbar.make(binding.root, message.toString(), Snackbar.LENGTH_LONG).show()
+            Snackbar.make(requireActivity().findViewById(R.id.authLayout), message.toString(), Snackbar.LENGTH_LONG).show()
         }
 
         return binding.root
