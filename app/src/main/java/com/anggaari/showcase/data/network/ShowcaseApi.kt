@@ -12,6 +12,16 @@ import retrofit2.http.*
 
 interface ShowcaseApi {
     @FormUrlEncoded
+    @POST("register")
+    @Headers(Constants.NO_AUTH_HEADER_KEY + ": true")
+    suspend fun register(
+        @Field("name") name:String,
+        @Field("email") email:String,
+        @Field("password") password:String,
+        @Field("password_confirmation") passwordConfirmation:String,
+    ): Response<LoginResult>
+
+    @FormUrlEncoded
     @POST("login")
     @Headers(Constants.NO_AUTH_HEADER_KEY + ": true")
     suspend fun login(

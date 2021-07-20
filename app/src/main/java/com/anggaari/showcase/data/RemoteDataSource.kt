@@ -12,6 +12,15 @@ import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor(private val showcaseApi: ShowcaseApi) {
 
+    suspend fun register(
+        name: String,
+        email: String,
+        password: String,
+        passwordConfirmation: String
+    ): Response<LoginResult> {
+        return showcaseApi.register(name, email, password, passwordConfirmation)
+    }
+
     suspend fun login(email: String, password: String): Response<LoginResult> {
         return showcaseApi.login(email, password)
     }

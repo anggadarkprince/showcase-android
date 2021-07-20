@@ -25,8 +25,13 @@ class AuthViewModel @Inject constructor(
     application: Application
 ) : AndroidViewModel(application) {
 
+    var registerResponse: MutableLiveData<NetworkResult<LoginResult>> = MutableLiveData()
     var loginResponse: MutableLiveData<NetworkResult<LoginResult>> = MutableLiveData()
     var forgotPasswordResponse: MutableLiveData<NetworkResult<StandardResponse>> = MutableLiveData()
+
+    fun register(name: String, email: String, password: String, passwordConfirmation: String) = viewModelScope.launch {
+        getRegisterSafeCall(name, email, password, passwordConfirmation)
+    }
 
     fun login(email: String, password: String) = viewModelScope.launch {
         getLoginSafeCall(email, password)
@@ -34,6 +39,21 @@ class AuthViewModel @Inject constructor(
 
     fun forgotPassword(email: String) = viewModelScope.launch {
         getForgotPasswordSafeCall(email)
+    }
+
+    private suspend fun getRegisterSafeCall(name: String, email: String, password: String, passwordConfirmation: String) {
+        registerResponse.value = NetworkResult.Loading()
+
+        if (ConnectionUtil.hasInternetConnection(getApplication<Application>())) {
+            try {
+                val response = repository.remote.register(name, email, password, passwordConfirmation)
+                registerResponse.value = handleRegisterResponse(response)
+            } catch (e: Exception) {
+                registerResponse.value = NetworkResult.Error(e.message)
+            }
+        } else {
+            registerResponse.value = NetworkResult.Error("No internet connection")
+        }
     }
 
     private suspend fun getLoginSafeCall(email: String, password: String) {
@@ -48,6 +68,25 @@ class AuthViewModel @Inject constructor(
             }
         } else {
             loginResponse.value = NetworkResult.Error("No internet connection")
+        }
+    }
+
+    private fun handleRegisterResponse(response: Response<LoginResult>): NetworkResult<LoginResult> {
+        return when {
+            response.message().toString().contains("timeout") -> {
+                NetworkResult.Error("Timeout")
+            }
+            response.code() == 422 -> {
+                NetworkResult.Error("Form invalid", response.code())
+            }
+            response.isSuccessful -> {
+                val register = response.body()!!
+                serviceInterceptor.setAccessToken(register.data.accessToken)
+                NetworkResult.Success(register)
+            }
+            else -> {
+                NetworkResult.Error(response.message(), response.code())
+            }
         }
     }
 
