@@ -23,6 +23,10 @@ class AuthActivity : AppCompatActivity() {
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.authNavHostFragment) as NavHostFragment
         navController = navHostFragment.navController
+    }
 
+    fun setAuthTitle(title: String, subtitle: String) {
+        binding.textViewTitle.text = title
+        binding.textViewSubtitle.text = subtitle
     }
 }

@@ -19,6 +19,11 @@ class RegisterFragment : Fragment() {
     ): View {
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
 
+        (activity as AuthActivity).setAuthTitle(
+            resources.getString(R.string.register),
+            resources.getString(R.string.join_with_thousands_creator),
+        )
+
         binding.textViewLogin.setOnClickListener {
             Navigation.findNavController(it)
                 .navigate(R.id.action_registerFragment_to_loginFragment)

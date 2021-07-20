@@ -20,6 +20,7 @@ import com.anggaari.showcase.models.auth.login.LoginResult
 import com.anggaari.showcase.ui.MainActivity
 import com.anggaari.showcase.utils.Constants
 import com.anggaari.showcase.utils.NetworkResult
+import com.anggaari.showcase.utils.hideKeyboard
 import com.anggaari.showcase.viewmodels.AppViewModel
 import com.anggaari.showcase.viewmodels.AuthViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -48,6 +49,11 @@ class LoginFragment : Fragment() {
     ): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
 
+        (activity as AuthActivity).setAuthTitle(
+            resources.getString(R.string.sign_in),
+            resources.getString(R.string.login_to_your_account),
+        )
+
         binding.textViewRegister.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_loginFragment_to_registerFragment)
         }
@@ -74,6 +80,7 @@ class LoginFragment : Fragment() {
                     binding.editTextPassword.requestFocus()
                 }
                 else -> {
+                    hideKeyboard()
                     login(email, password)
                 }
             }

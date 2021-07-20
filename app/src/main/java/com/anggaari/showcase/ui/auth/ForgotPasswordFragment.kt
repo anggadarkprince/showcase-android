@@ -16,6 +16,7 @@ import com.anggaari.showcase.models.commons.StandardResponse
 import com.anggaari.showcase.ui.MainActivity
 import com.anggaari.showcase.utils.Constants
 import com.anggaari.showcase.utils.NetworkResult
+import com.anggaari.showcase.utils.hideKeyboard
 import com.anggaari.showcase.viewmodels.AuthViewModel
 
 class ForgotPasswordFragment : Fragment() {
@@ -36,6 +37,11 @@ class ForgotPasswordFragment : Fragment() {
     ): View {
         _binding = FragmentForgotPasswordBinding.inflate(inflater, container, false)
 
+        (activity as AuthActivity).setAuthTitle(
+            resources.getString(R.string.forgot_password),
+            resources.getString(R.string.we_will_send_you_a_reset_link),
+        )
+
         binding.textViewRememberPasswordLogin.setOnClickListener {
             Navigation.findNavController(it)
                 .navigate(R.id.action_forgotPasswordFragment_to_loginFragment)
@@ -52,6 +58,7 @@ class ForgotPasswordFragment : Fragment() {
                     binding.editTextEmailAddress.requestFocus()
                 }
                 else -> {
+                    hideKeyboard()
                     requestResetPassword(email)
                 }
             }
@@ -84,7 +91,7 @@ class ForgotPasswordFragment : Fragment() {
                         "requestResetPassword() error: " + response.message.toString()
                     )
                     when(response.code) {
-                        404 -> {
+                        404, 400 -> {
                             binding.editTextEmailAddress.error = "Account is not found"
                             binding.editTextEmailAddress.requestFocus()
                         }

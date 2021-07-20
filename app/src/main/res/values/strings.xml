@@ -20,8 +20,12 @@
     <string name="terms_and_conditions"><![CDATA[Terms & Conditions]]></string>
     <string name="reset_password">Reset Password</string>
     <string name="confirm_password">Confirm Password</string>
-    <string name="hint_confirm_your_password">Confirm your password</string>
+    <string name="hint_confirm_your_password"><font size="14">Confirm your password</font></string>
     <string name="name">Name</string>
-    <string name="hint_input_your_name">Input your name</string>
+    <string name="hint_input_your_name"><font size="14">Input your name</font></string>
     <string name="register">Register</string>
+    <string name="login_to_your_account">Login to your account</string>
+    <string name="join_with_thousands_creator">Join with thousands creator</string>
+    <string name="we_will_send_you_a_reset_link">We will send you a reset link</string>
+    <string name="reset_link_instruction">We will sent you a link to reset your password, please check your email address after this.</string>
 </resources>
