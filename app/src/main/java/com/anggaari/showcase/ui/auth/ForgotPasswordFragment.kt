@@ -1,6 +1,5 @@
 package com.anggaari.showcase.ui.auth
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,10 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.anggaari.showcase.R
 import com.anggaari.showcase.databinding.FragmentForgotPasswordBinding
-import com.anggaari.showcase.models.auth.login.LoginData
 import com.anggaari.showcase.models.commons.StandardResponse
-import com.anggaari.showcase.ui.MainActivity
-import com.anggaari.showcase.utils.Constants
 import com.anggaari.showcase.utils.NetworkResult
 import com.anggaari.showcase.utils.hideKeyboard
 import com.anggaari.showcase.viewmodels.AuthViewModel

@@ -63,6 +63,10 @@ class LoginFragment : Fragment() {
                 .navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
         }
 
+        binding.textViewTermsConditions.setOnClickListener {
+            (activity as AuthActivity).openTermsAndConditions(it)
+        }
+
         binding.signInButton.setOnClickListener {
             val email = binding.editTextEmailAddress.text.toString()
             val password = binding.editTextPassword.text.toString()

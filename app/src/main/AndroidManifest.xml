@@ -13,9 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Showcase"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".ui.auth.AuthActivity"
-            android:theme="@style/Theme.Showcase.Fullscreen"/>
+        android:usesCleartextTraffic="true"
+        android:windowSoftInputMode="adjustPan|adjustResize">
+        <activity android:name=".ui.web.WebViewerActivity"></activity>
+        <activity
+            android:name=".ui.auth.AuthActivity"
+            android:theme="@style/Theme.Showcase.Fullscreen" />
         <activity android:name=".ui.MainActivity" />
         <activity
             android:name=".ui.SplashActivity"

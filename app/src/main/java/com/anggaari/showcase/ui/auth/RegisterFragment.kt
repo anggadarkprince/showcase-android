@@ -49,6 +49,10 @@ class RegisterFragment : Fragment() {
                 .navigate(R.id.action_registerFragment_to_loginFragment)
         }
 
+        binding.textViewTermsConditions.setOnClickListener {
+            (activity as AuthActivity).openTermsAndConditions(it)
+        }
+
         binding.registerButton.setOnClickListener {
             val name = binding.editTextName.text.toString()
             val email = binding.editTextEmailAddress.text.toString()
@@ -69,7 +73,7 @@ class RegisterFragment : Fragment() {
                     binding.editTextPassword.error = "Please input your password"
                     binding.editTextPassword.requestFocus()
                 }
-                password !== passwordConfirmation -> {
+                password != passwordConfirmation -> {
                     binding.editTextConfirmPassword.error = "Password confirmation mismatch"
                     binding.editTextConfirmPassword.requestFocus()
                 }
