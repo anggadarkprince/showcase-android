@@ -77,7 +77,11 @@ class AuthViewModel @Inject constructor(
                 NetworkResult.Error("Timeout")
             }
             response.code() == 422 -> {
-                NetworkResult.Error("Form invalid", response.code())
+                Log.e("Validation Error: body", response.body().toString())
+                Log.e("Validation Error: errorBody", response.errorBody().toString())
+                Log.e("Validation Error: message", response.message())
+                Log.e("Validation Error: raw", response.raw().toString())
+                NetworkResult.Error("Form invalid", response.code(), response.body())
             }
             response.isSuccessful -> {
                 val register = response.body()!!
