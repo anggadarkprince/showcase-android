@@ -1,7 +1,5 @@
 package com.anggaari.showcase.ui.auth
 
-import android.accounts.Account
-import android.accounts.AccountManager
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -9,14 +7,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.anggaari.showcase.R
 import com.anggaari.showcase.databinding.FragmentLoginBinding
-import com.anggaari.showcase.models.auth.login.LoginData
-import com.anggaari.showcase.models.auth.login.LoginResult
+import com.anggaari.showcase.models.user.UserData
 import com.anggaari.showcase.ui.MainActivity
 import com.anggaari.showcase.utils.Constants
 import com.anggaari.showcase.utils.NetworkResult
@@ -106,7 +102,7 @@ class LoginFragment : Fragment() {
         authViewModel.loginResponse.observe(viewLifecycleOwner, { response ->
             when (response) {
                 is NetworkResult.Success -> {
-                    val data: LoginData = response.data!!.data
+                    val data: UserData = response.data!!.data
                     appViewModel.saveAccessToken(data.accessToken)
                     appViewModel.saveUser(data.user)
 

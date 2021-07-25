@@ -1,12 +1,11 @@
-package com.anggaari.showcase.models.auth.login
+package com.anggaari.showcase.models.user
 
 import android.os.Parcelable
-import com.anggaari.showcase.models.auth.User
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class LoginData(
+data class UserData(
     @SerializedName("access_token")
     val accessToken: String,
     @SerializedName("token_type")

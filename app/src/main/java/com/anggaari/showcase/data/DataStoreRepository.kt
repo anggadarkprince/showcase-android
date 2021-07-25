@@ -6,7 +6,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.anggaari.showcase.models.auth.User
+import com.anggaari.showcase.models.user.User
 import com.anggaari.showcase.utils.Constants.Companion.PREFERENCES_ACCESS_TOKEN
 import com.anggaari.showcase.utils.Constants.Companion.PREFERENCES_NAME
 import com.anggaari.showcase.utils.Constants.Companion.PREFERENCES_USER

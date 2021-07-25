@@ -1,4 +1,4 @@
-package com.anggaari.showcase.models.auth
+package com.anggaari.showcase.models.user
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

@@ -1,7 +1,7 @@
 package com.anggaari.showcase.data
 
 import com.anggaari.showcase.data.network.ShowcaseApi
-import com.anggaari.showcase.models.auth.login.LoginResult
+import com.anggaari.showcase.models.user.UserResponse
 import com.anggaari.showcase.models.award.AwardResult
 import com.anggaari.showcase.models.commons.StandardResponse
 import com.anggaari.showcase.models.education.EducationResult
@@ -17,11 +17,11 @@ class RemoteDataSource @Inject constructor(private val showcaseApi: ShowcaseApi)
         email: String,
         password: String,
         passwordConfirmation: String
-    ): Response<LoginResult> {
+    ): Response<UserResponse> {
         return showcaseApi.register(name, email, password, passwordConfirmation)
     }
 
-    suspend fun login(email: String, password: String): Response<LoginResult> {
+    suspend fun login(email: String, password: String): Response<UserResponse> {
         return showcaseApi.login(email, password)
     }
 

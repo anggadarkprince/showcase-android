@@ -6,17 +6,17 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.anggaari.showcase.data.Repository
-import com.anggaari.showcase.models.auth.login.LoginResult
-import com.anggaari.showcase.models.award.AwardResult
 import com.anggaari.showcase.models.commons.StandardResponse
+import com.anggaari.showcase.models.user.UserResponse
 import com.anggaari.showcase.utils.ConnectionUtil
 import com.anggaari.showcase.utils.MyServiceInterceptor
+import com.anggaari.showcase.utils.NetworkResponse
 import com.anggaari.showcase.utils.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
-import java.lang.Exception
 import javax.inject.Inject
+
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(
@@ -25,8 +25,8 @@ class AuthViewModel @Inject constructor(
     application: Application
 ) : AndroidViewModel(application) {
 
-    var registerResponse: MutableLiveData<NetworkResult<LoginResult>> = MutableLiveData()
-    var loginResponse: MutableLiveData<NetworkResult<LoginResult>> = MutableLiveData()
+    var registerResponse: MutableLiveData<NetworkResponse<UserResponse>> = MutableLiveData()
+    var loginResponse: MutableLiveData<NetworkResult<UserResponse>> = MutableLiveData()
     var forgotPasswordResponse: MutableLiveData<NetworkResult<StandardResponse>> = MutableLiveData()
 
     fun register(name: String, email: String, password: String, passwordConfirmation: String) = viewModelScope.launch {
@@ -42,17 +42,17 @@ class AuthViewModel @Inject constructor(
     }
 
     private suspend fun getRegisterSafeCall(name: String, email: String, password: String, passwordConfirmation: String) {
-        registerResponse.value = NetworkResult.Loading()
+        registerResponse.value = NetworkResponse.Loading()
 
         if (ConnectionUtil.hasInternetConnection(getApplication<Application>())) {
             try {
                 val response = repository.remote.register(name, email, password, passwordConfirmation)
                 registerResponse.value = handleRegisterResponse(response)
             } catch (e: Exception) {
-                registerResponse.value = NetworkResult.Error(e.message)
+                registerResponse.value = NetworkResponse.Error(e.message)
             }
         } else {
-            registerResponse.value = NetworkResult.Error("No internet connection")
+            registerResponse.value = NetworkResponse.Error("No internet connection")
         }
     }
 
@@ -71,30 +71,33 @@ class AuthViewModel @Inject constructor(
         }
     }
 
-    private fun handleRegisterResponse(response: Response<LoginResult>): NetworkResult<LoginResult> {
+    private fun handleRegisterResponse(response: Response<UserResponse>): NetworkResponse<UserResponse> {
         return when {
-            response.message().toString().contains("timeout") -> {
-                NetworkResult.Error("Timeout")
+            response.isSuccessful -> {
+                val register = response.body()!!
+                serviceInterceptor.setAccessToken(register.data.accessToken)
+                NetworkResponse.Success(register)
             }
             response.code() == 422 -> {
                 Log.e("Validation Error: body", response.body().toString())
                 Log.e("Validation Error: errorBody", response.errorBody().toString())
                 Log.e("Validation Error: message", response.message())
                 Log.e("Validation Error: raw", response.raw().toString())
-                NetworkResult.Error("Form invalid", response.code(), response.body())
-            }
-            response.isSuccessful -> {
-                val register = response.body()!!
-                serviceInterceptor.setAccessToken(register.data.accessToken)
-                NetworkResult.Success(register)
+                NetworkResponse.Error(response.message(), response.code(), response.errorBody())
+
+                //val validationType = object : TypeToken<ValidationErrorResponse<UserValidation>>() {}.type
+                //val userValidation = Gson().fromJson<ValidationErrorResponse<UserValidation>>(
+                //    response.errorBody()!!.charStream(), validationType
+                //)
+                //NetworkResult.Error(response.message(), response.code(), errorBody)
             }
             else -> {
-                NetworkResult.Error(response.message(), response.code())
+                NetworkResponse.Error(response.message(), response.code(), response.errorBody())
             }
         }
     }
 
-    private fun handleDataResponse(response: Response<LoginResult>): NetworkResult<LoginResult> {
+    private fun handleDataResponse(response: Response<UserResponse>): NetworkResult<UserResponse> {
         return when {
             response.message().toString().contains("timeout") -> {
                 NetworkResult.Error("Timeout")

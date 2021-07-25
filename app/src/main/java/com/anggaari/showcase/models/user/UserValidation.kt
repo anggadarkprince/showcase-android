@@ -1,17 +1,17 @@
-package com.anggaari.showcase.models.auth.register
+package com.anggaari.showcase.models.user
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Errors(
+data class UserValidation(
     @SerializedName("name")
-    val name: List<String>,
+    val name: List<String>?,
     @SerializedName("email")
-    val email: List<String>,
+    val email: List<String>?,
     @SerializedName("password")
-    val password: List<String>,
+    val password: List<String>?,
     @SerializedName("password_confirmation")
-    val passwordConfirmation: List<String>
+    val passwordConfirmation: List<String>?
 ): Parcelable

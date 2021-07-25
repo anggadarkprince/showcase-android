@@ -1,6 +1,6 @@
 package com.anggaari.showcase.data.network
 
-import com.anggaari.showcase.models.auth.login.LoginResult
+import com.anggaari.showcase.models.user.UserResponse
 import com.anggaari.showcase.models.award.AwardResult
 import com.anggaari.showcase.models.commons.StandardResponse
 import com.anggaari.showcase.models.education.EducationResult
@@ -19,7 +19,7 @@ interface ShowcaseApi {
         @Field("email") email:String,
         @Field("password") password:String,
         @Field("password_confirmation") passwordConfirmation:String,
-    ): Response<LoginResult>
+    ): Response<UserResponse>
 
     @FormUrlEncoded
     @POST("login")
@@ -27,7 +27,7 @@ interface ShowcaseApi {
     suspend fun login(
         @Field("email") email:String,
         @Field("password") password:String
-    ): Response<LoginResult>
+    ): Response<UserResponse>
 
     @FormUrlEncoded
     @POST("forgot-password")

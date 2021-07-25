@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.anggaari.showcase.data.DataStoreRepository
-import com.anggaari.showcase.models.auth.User
+import com.anggaari.showcase.models.user.User
 import com.anggaari.showcase.utils.MyServiceInterceptor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
