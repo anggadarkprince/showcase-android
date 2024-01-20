@@ -29,5 +29,30 @@
         android:id="@+id/educationFragment"
         android:name="com.anggaari.showcase.ui.EducationFragment"
         android:label="Educations"
-        tools:layout="@layout/fragment_education" />
+        tools:layout="@layout/fragment_education" >
+        <action
+            android:id="@+id/action_educationFragment_to_educationCreateFragment"
+            app:destination="@id/educationCreateFragment" />
+        <action
+            android:id="@+id/action_educationFragment_to_educationEditFragment"
+            app:destination="@id/educationEditFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/educationCreateFragment"
+        android:name="com.anggaari.showcase.ui.educations.EducationCreateFragment"
+        android:label="fragment_education_create"
+        tools:layout="@layout/fragment_education_create" >
+        <action
+            android:id="@+id/action_educationCreateFragment_to_educationFragment"
+            app:destination="@id/educationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/educationEditFragment"
+        android:name="com.anggaari.showcase.ui.educations.EducationEditFragment"
+        android:label="fragment_education_edit"
+        tools:layout="@layout/fragment_education_edit" >
+        <action
+            android:id="@+id/action_educationEditFragment_to_educationFragment"
+            app:destination="@id/educationFragment" />
+    </fragment>
 </navigation>

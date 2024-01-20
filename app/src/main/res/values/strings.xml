@@ -28,4 +28,18 @@
     <string name="join_with_thousands_creator">Join with thousands creator</string>
     <string name="we_will_send_you_a_reset_link">We will send you a reset link</string>
     <string name="reset_link_instruction">We will sent you a link to reset your password, please check your email address after this.</string>
+    <string name="add_item">Add item</string>
+    <string name="degree">Degree</string>
+    <string name="hint_select_your_degree">Select your degree</string>
+
+    <string-array name="degree_list">
+        <item>Elementary School</item>
+        <item>Junior School</item>
+        <item>High School</item>
+        <item>Collage</item>
+        <item>Master</item>
+        <item>Doctor</item>
+        <item>Professor</item>
+    </string-array>
+
 </resources>

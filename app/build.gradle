@@ -50,7 +50,7 @@ android {
             dimension "version"
             applicationIdSuffix = ".dev"
             versionNameSuffix = "-dev"
-            buildConfigField "String", "BASE_URL", "\"http://192.168.65.102:8000/api/\""
+            buildConfigField "String", "BASE_URL", "\"http://192.168.1.126:8000/api/\""
         }
         app {
             buildConfigField "String", "BASE_URL", "\"https://www.angga-ari.com/api/\""

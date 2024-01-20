@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anggaari.showcase.R
 import com.anggaari.showcase.adapters.EducationAdapter
@@ -42,6 +43,10 @@ class EducationFragment : Fragment() {
 
         lifecycleScope.launchWhenStarted {
             requestApiData()
+        }
+
+        binding.floatingActionButton.setOnClickListener {
+            it.findNavController().navigate(R.id.action_educationFragment_to_educationCreateFragment)
         }
 
         return binding.root
